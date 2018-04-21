@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Psychic Game</title>
+        <style>
+        body {background: black}
+        p {color: white}
+        h1 {color: white}
+        </style>
+    </head>
+
+    <body>
+        <h1>Psychic Game</h1>
+
+        <p>Guess what letter I'm thinking of.</p>
+        <p>Wins: <span id="wins">0</span></p>
+        <p>Losses: <span id="losses">0</span></p>
+        <p>Guesses Left: <span id="guesses-left"></span></p>
+        <p>Your guesses so far: <span id="guesses-so-far"></span></p>
+
+        <script type="text/javascript">
+//set variables
+            var wins = 0;
+            var losses = 0;
+            var guessesLeft = 9;
+            var letterArray = ["J", "M", "Z"]; //set to make sure the game works before implementing mat.random
+            var guessedLetterArray = [];
+
+//commenting out attempt at computer guesses             
+        //   for (var i =0; i<10; i++)
+        //    text += possible.charAt(Math.floor(Math.random() * possible.length));
+        //       return text;
+        //      }
+
+//make the call and display before game starts
+            var updateGuessesLeft = function () {
+                document.querySelector("#guesses-left").innerHTML = guessesLeft;
+            };
+            var updateGuessesSoFar = function (){
+                document.querySelector("#guesses-so-far").innerHTML = guessedLetterArray;
+            };
+            updateGuessesLeft ();
+            updateGuessesSoFar ();
+
+//capture letters pressesed, decrease guesses left
+        document.onkeyup=function(event){
+            guessesLeft--;
+             var letter = String.fromCharCode(event.which).toUpperCase();         
+             guessedLetterArray.push(letter);
+             updateGuessesLeft ();
+             updateGuessesSoFar ();
+
+//scoring, determine if wins++ go up or losses|++ go down
+     if (guessedLetterArray == letterArray){
+         wins++;
+         guessesLeft = 9;
+         updateGuessesSoFar.length = 0;
+     }
+     else if (guessedLetterArray |++ letterArray){
+         updateGuessesLeft--;
+     }
+        }
+//need to reset counts
+        </script>
+        
+    </body>
+</html>
